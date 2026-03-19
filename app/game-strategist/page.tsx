@@ -121,25 +121,24 @@ export default function GameStrategistPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#050006] text-white">
-      {/* Ambient background glows (matches main portfolio styling) */}
+    <main className="relative min-h-screen overflow-hidden bg-[#0a0a0c] text-zinc-100">
+      {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 left-1/2 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-purple-500/10 blur-3xl" />
-        <div className="absolute -left-24 top-56 h-[420px] w-[420px] rounded-full bg-fuchsia-500/10 blur-3xl" />
-        <div className="absolute -right-28 top-96 h-[460px] w-[460px] rounded-full bg-violet-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.18),transparent_55%)]" />
+        <div className="absolute -top-24 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute -bottom-40 right-0 h-[420px] w-[420px] rounded-full bg-slate-500/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_50%)]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-12 sm:px-6 sm:pt-16">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-100 shadow-[0_0_35px_rgba(168,85,247,0.18)] transition hover:bg-purple-500/15"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2 text-sm text-white/85 transition hover:bg-white/[0.08]"
         >
           <span aria-hidden="true">←</span> Back to Home
         </Link>
 
         <header className="mt-8">
-          <p className="text-sm text-purple-200/80">AI Strategy Dashboard</p>
+          <p className="text-sm text-zinc-400">AI Strategy Dashboard</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
             Valorant & LoL Coaching
           </h1>
@@ -150,7 +149,7 @@ export default function GameStrategistPage() {
         </header>
 
         {/* Tabs / Toggle */}
-        <div className="mt-8 rounded-3xl border border-purple-500/20 bg-purple-500/10 p-1 shadow-[0_0_60px_rgba(168,85,247,0.08)]">
+        <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-1">
           <div className="grid grid-cols-2 gap-1">
             <button
               type="button"
@@ -158,7 +157,7 @@ export default function GameStrategistPage() {
               className={[
                 "rounded-2xl px-4 py-3 text-sm font-medium transition",
                 mode === "valorant"
-                  ? "bg-purple-600 text-white shadow-[0_0_35px_rgba(124,58,237,0.35)]"
+                  ? "bg-white text-zinc-900"
                   : "bg-transparent text-white/70 hover:text-white",
               ].join(" ")}
               aria-pressed={mode === "valorant"}
@@ -171,7 +170,7 @@ export default function GameStrategistPage() {
               className={[
                 "rounded-2xl px-4 py-3 text-sm font-medium transition",
                 mode === "lol"
-                  ? "bg-purple-600 text-white shadow-[0_0_35px_rgba(124,58,237,0.35)]"
+                  ? "bg-white text-zinc-900"
                   : "bg-transparent text-white/70 hover:text-white",
               ].join(" ")}
               aria-pressed={mode === "lol"}
@@ -188,20 +187,20 @@ export default function GameStrategistPage() {
               e.preventDefault();
               void handleGetStrategy();
             }}
-            className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_60px_rgba(168,85,247,0.05)]"
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-6"
           >
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm text-purple-200/80">
+                <p className="text-sm text-zinc-400">
                   {mode === "valorant" ? "Valorant inputs" : "LoL inputs"}
                 </p>
                 <h2 className="mt-2 text-xl font-semibold text-white">
                   {mode === "valorant" ? "Pick your setup" : "Choose the match-up"}
                 </h2>
               </div>
-              <div className="rounded-2xl border border-purple-500/20 bg-purple-500/10 px-3 py-2">
-                <p className="text-xs text-purple-100/90">Prompt</p>
-                <p className="mt-1 max-w-[210px] truncate text-sm font-semibold text-purple-200">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2">
+                <p className="text-xs text-zinc-400">Prompt</p>
+                <p className="mt-1 max-w-[210px] truncate text-sm font-semibold text-white/90">
                   {promptSummary}
                 </p>
               </div>
@@ -216,7 +215,7 @@ export default function GameStrategistPage() {
                       value={map}
                       onChange={(e) => setMap(e.target.value)}
                       placeholder="e.g., Bind, Ascent..."
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/30"
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
                     />
                   </label>
                   <label className="block">
@@ -225,7 +224,7 @@ export default function GameStrategistPage() {
                       value={agent}
                       onChange={(e) => setAgent(e.target.value)}
                       placeholder="e.g., Jett, Omen..."
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/30"
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
                     />
                   </label>
                 </>
@@ -237,7 +236,7 @@ export default function GameStrategistPage() {
                       value={champion}
                       onChange={(e) => setChampion(e.target.value)}
                       placeholder="e.g., Azir, Yasuo..."
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/30"
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
                     />
                   </label>
                   <label className="block">
@@ -246,7 +245,7 @@ export default function GameStrategistPage() {
                       value={opponent}
                       onChange={(e) => setOpponent(e.target.value)}
                       placeholder="e.g., Annie, Darius..."
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/30"
+                      className="mt-2 w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
                     />
                   </label>
                 </>
@@ -258,8 +257,8 @@ export default function GameStrategistPage() {
                 type="submit"
                 disabled={isLoading}
                 className={[
-                  "w-full rounded-3xl border border-purple-500/30 bg-purple-600 px-6 py-4 text-sm font-semibold text-white shadow-[0_0_60px_rgba(124,58,237,0.35)] transition hover:bg-purple-500",
-                  isLoading ? "opacity-70 hover:bg-purple-600" : "",
+                  "w-full rounded-3xl border border-white/20 bg-white px-6 py-4 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-200",
+                  isLoading ? "opacity-70 hover:bg-white" : "",
                 ].join(" ")}
               >
                 {isLoading ? "Analyzing..." : "Get AI Strategy"}
@@ -268,21 +267,21 @@ export default function GameStrategistPage() {
           </form>
 
           {/* Result */}
-          <div className="relative rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_0_60px_rgba(168,85,247,0.05)]">
+          <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             {(!isLoading &&
               (dashboard.early.length ||
                 dashboard.items.length ||
                 dashboard.tips.length)) ? (
-              <div className="absolute right-4 top-4 rounded-full border border-purple-500/25 bg-purple-500/10 px-3 py-1 text-[11px] font-semibold text-purple-200/90 shadow-[0_0_25px_rgba(168,85,247,0.25)]">
+              <div className="absolute right-4 top-4 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[11px] font-semibold text-zinc-300">
                 AI Generated
               </div>
             ) : null}
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm text-purple-200/80">Result</p>
+                <p className="text-sm text-zinc-400">Result</p>
                 <h3 className="mt-2 text-xl font-semibold text-white">Your AI Coach</h3>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2">
                 <p className="text-xs text-white/60">Status</p>
                 <p className="mt-1 text-sm font-semibold text-white/80">
                   {isLoading ? "Analyzing" : "Ready"}
@@ -290,13 +289,13 @@ export default function GameStrategistPage() {
               </div>
             </div>
 
-            <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-purple-500/30 to-transparent opacity-70" />
+            <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-70" />
 
             <div className="mt-5">
               {dashboard.early.length || dashboard.items.length || dashboard.tips.length ? (
                 <div className="space-y-6">
                   <div>
-                    <p className="text-sm font-semibold text-purple-200">
+                    <p className="text-sm font-semibold text-white/90">
                       Erken Oyun
                     </p>
                     <ul className="mt-2 space-y-2">
@@ -309,7 +308,7 @@ export default function GameStrategistPage() {
                   </div>
 
                   <div>
-                    <p className="text-sm font-semibold text-purple-200">
+                    <p className="text-sm font-semibold text-white/90">
                       Eşya Seçimleri
                     </p>
                     <ul className="mt-2 space-y-2">
@@ -322,7 +321,7 @@ export default function GameStrategistPage() {
                   </div>
 
                   <div>
-                    <p className="text-sm font-semibold text-purple-200">
+                    <p className="text-sm font-semibold text-white/90">
                       Pro İpuçları
                     </p>
                     <ul className="mt-2 space-y-2">
@@ -345,7 +344,7 @@ export default function GameStrategistPage() {
 
         <footer className="mt-10 text-center text-xs text-white/55">
           Built with{" "}
-          <span className="text-purple-200/90 font-medium">Gemini AI</span>
+          <span className="font-medium text-white/85">Gemini AI</span>
         </footer>
       </div>
     </main>

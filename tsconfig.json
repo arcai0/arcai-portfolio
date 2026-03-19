@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "components/TerminalWidget. tsx"  ],
   "exclude": ["node_modules"]
 }

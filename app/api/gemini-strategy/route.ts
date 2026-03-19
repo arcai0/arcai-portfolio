@@ -98,8 +98,7 @@ Keep it under 180 words.`;
     const geminiApiKey = process.env.GEMINI_API_KEY;
     if (!geminiApiKey) {
       return NextResponse.json(
-        { error: "Server is missing GEMINI_API_KEY." },
-        { status: 500 }
+        { error: "Server is missing GEMINI_API_KEY." },        { status: 500 }
       );
     }
 
@@ -131,4 +130,3 @@ Keep it under 180 words.`;
     );
   }
 }
-
