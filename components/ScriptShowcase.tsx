@@ -7,8 +7,8 @@ const scripts = [
   {
     title: "AI Tactical Engine",
     description: "Real-time data analysis and tactical insights for competitive gaming.",
-    githubUrl: "https://github.com/arcai0/ai-tactical-engine",
-    installCmd: "git clone https://github.com/arcai0/ai-tactical-engine.git"
+    githubUrl: "https://github.com/arcai0/arcai-portfolio",
+    installCmd: "git clone https://github.com/arcai0/arcai-portfolio.git"
   },
   {
     title: "Next.js Boilerplate",
