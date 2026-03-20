@@ -1,100 +1,94 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from 'react';
+import { Github, Copy, ExternalLink, Check } from 'lucide-react';
 
-type ToolCard = {
-  id: string;
-  name: string;
-  brief: string;
-  codeUrl: string;
-  installCommand: string;
-};
-
-const TOOLS: ToolCard[] = [
+const scripts = [
   {
-    id: "ai-tactical-engine",
-    name: "AI Tactical Engine",
-    brief: "Real-time data analysis for competitive games",
-    codeUrl: "https://github.com/arcai/ai-tactical-engine",
-    installCommand: "npm install ai-tactical-engine",
+    title: "AI Tactical Engine",
+    description: "Real-time data analysis and tactical insights for competitive gaming.",
+    githubUrl: "https://github.com/arcai0/ai-tactical-engine",
+    installCmd: "git clone https://github.com/arcai0/ai-tactical-engine.git"
   },
   {
-    id: "nextjs-boilerplate",
-    name: "Next.js Boilerplate",
-    brief: "High-performance starter kit for SaaS",
-    codeUrl: "https://github.com/arcai/nextjs-boilerplate",
-    installCommand: "npx create-next-app@latest my-saas --example boilerplate",
+    title: "Next.js Boilerplate",
+    description: "High-performance, SEO-optimized starter kit for modern SaaS applications.",
+    githubUrl: "https://github.com/arcai0/nextjs-boilerplate",
+    installCmd: "npx create-next-app -e https://github.com/arcai0/nextjs-boilerplate"
   },
   {
-    id: "git-automator",
-    name: "Git Automator",
-    brief: "Python script to manage large repo deployments",
-    codeUrl: "https://github.com/arcai/git-automator",
-    installCommand: "pip install git-automator",
-  },
+    title: "Git Automator",
+    description: "Python-based automation script for managing large scale repo deployments.",
+    githubUrl: "https://github.com/arcai0/git-automator",
+    installCmd: "pip install arcai-git-automator"
+  }
 ];
 
-export default function ScriptShowcase() {
-  const [copiedToolId, setCopiedToolId] = useState<string | null>(null);
+const ScriptShowcase = () => {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const handleCopy = async (toolId: string, command: string) => {
-    try {
-      await navigator.clipboard.writeText(command);
-      setCopiedToolId(toolId);
-      setTimeout(() => {
-        setCopiedToolId((current) => (current === toolId ? null : current));
-      }, 1400);
-    } catch {
-      setCopiedToolId(null);
-    }
+  const copyToClipboard = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (
-    <section className="w-full rounded-2xl border border-zinc-900 bg-zinc-950 p-6 sm:p-8">
-      <div className="mb-6">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">Vault</p>
-        <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">
-          Script Showcase
-        </h2>
-        <p className="mt-2 text-sm text-zinc-400">
-          Minimal, production-focused tools directory.
-        </p>
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {scripts.map((script, index) => (
+        <div 
+          key={index}
+          className="group relative bg-zinc-950 border border-zinc-900 p-6 rounded-xl hover:border-purple-500/50 transition-all duration-300 shadow-xl"
+        >
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+              {script.title}
+            </h3>
+            <a 
+              href={script.githubUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-zinc-500 hover:text-white transition-colors"
+            >
+              <Github size={20} />
+            </a>
+          </div>
+          
+          <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
+            {script.description}
+          </p>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {TOOLS.map((tool) => (
-          <article
-            key={tool.id}
-            className="group rounded-xl border border-zinc-900 bg-zinc-950/80 p-5 transition hover:border-violet-900"
-          >
-            <h3 className="text-base font-semibold text-white">{tool.name}</h3>
-            <p className="mt-2 min-h-12 text-sm leading-relaxed text-zinc-400">
-              {tool.brief}
-            </p>
-
-            <div className="mt-5 flex items-center gap-2">
-              <a
-                href={tool.codeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex flex-1 items-center justify-center rounded-lg border border-zinc-800 px-3 py-2 text-sm text-zinc-200 transition hover:border-violet-900 hover:text-white"
-              >
-                View Code
-              </a>
-              <button
-                type="button"
-                onClick={() => handleCopy(tool.id, tool.installCommand)}
-                className="inline-flex flex-1 items-center justify-center rounded-lg border border-zinc-800 px-3 py-2 text-sm text-zinc-300 transition hover:border-violet-900 hover:text-white"
-              >
-                {copiedToolId === tool.id
-                  ? "Copied"
-                  : "Copy Install Command"}
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => copyToClipboard(script.installCmd, script.title)}
+              className="flex-1 flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 py-2 px-4 rounded-lg text-xs font-mono transition-colors border border-zinc-800"
+            >
+              {copiedId === script.title ? (
+                <>
+                  <Check size={14} className="text-green-500" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={14} />
+                  <span>Copy Command</span>
+                </>
+              )}
+            </button>
+            
+            <a 
+              href={script.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-lg border border-zinc-800 transition-colors"
+            >
+              <ExternalLink size={16} />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
   );
-}
+};
 
+export default ScriptShowcase;
