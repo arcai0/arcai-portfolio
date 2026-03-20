@@ -72,15 +72,42 @@ export default function TerminalWidget() {
     if (command === "help") {
       entries.push({ id: idCursor, type: "output", text: HELP_TEXT });
       idCursor += 1;
-    } else if (command === "matrix") {
-      setShowMatrixEffect(true);
-    } else if (command === "message" || command.startsWith("message ")) {
+    } else if (command === "message") {
       entries.push({
         id: idCursor,
         type: "output",
-        text: "Transmission received. Saving your message to the vault...",
+        text: "Error: Message cannot be empty. Usage: message <your text here>",
       });
       idCursor += 1;
+    } else if (command.startsWith("message ")) {
+      const messageText = raw.slice("message ".length).trim();
+
+      if (!messageText) {
+        entries.push({
+          id: idCursor,
+          type: "output",
+          text: "Error: Message cannot be empty. Usage: message <your text here>",
+        });
+        idCursor += 1;
+      } else {
+        entries.push({
+          id: idCursor,
+          type: "output",
+          text: "Transmission received. Saving your message to the vault...",
+        });
+        idCursor += 1;
+
+        // Trigger API call in background for valid messages.
+        void fetch("/api/message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: messageText }),
+        }).catch(() => {
+          // Intentionally silent: terminal output remains concise.
+        });
+      }
+    } else if (command === "matrix") {
+      setShowMatrixEffect(true);
     } else if (COMMAND_OUTPUTS[command]) {
       entries.push({
         id: idCursor,
