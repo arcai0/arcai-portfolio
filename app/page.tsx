@@ -1,39 +1,41 @@
-import React from "react";
 import TerminalWidget from "@/components/TerminalWidget";
+import ScriptShowcase from "@/components/ScriptShowcase";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#0a0a0c] text-zinc-100">
-      {/* Ambient background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
-        <div className="absolute -bottom-40 right-0 h-[420px] w-[420px] rounded-full bg-slate-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_50%)]" />
+    <main className="flex min-h-screen flex-col items-center pt-20 pb-20 px-4 bg-black text-white selection:bg-purple-500/30">
+      {/* Hero Section: Karakterli ve Sade */}
+      <div className="text-center max-w-2xl w-full mb-16">
+        <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4 animate-in fade-in slide-in-from-top-4 duration-1000">
+          arcai
+        </h1>
+        <h2 className="text-xl md:text-2xl text-purple-400 mb-6 font-semibold tracking-tight">
+          I build cool web apps and still rank up.
+        </h2>
+        <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+          I ship clean Node.js and Next.js apps. When I&apos;m not pushing code, 
+          I&apos;m usually building tools for competitive games or exploring AI integrations. 
+          No fluff, just high-performance builds.
+        </p>
       </div>
 
-      <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-16 sm:px-6">
-        {/* Hero */}
-        <section className="text-center">
-          <p className="text-sm text-zinc-400">arcai</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-            <span className="block bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-              I build cool web apps and still rank up.
-            </span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-            I ship fast Node.js + Next.js apps. When I am not coding, I am grinding
-            League of Legends or Valorant, and I built an AI strategy tool for both.
-          </p>
-        </section>
+      {/* Terminal Section: İnteraktif Yazılımcı Üssü */}
+      <div className="w-full max-w-3xl mb-24 drop-shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+        <TerminalWidget />
+      </div>
 
-        {/* Terminal */}
-        <section className="mt-12">
-          <div className="mx-auto w-full max-w-3xl">
-            <TerminalWidget />
-          </div>
-        </section>
+      {/* Script Vault: İşe Yarayan Araçlar */}
+      <div className="w-full max-w-5xl">
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="h-[1px] w-12 bg-zinc-800"></div>
+          <h2 className="text-sm font-mono text-zinc-500 uppercase tracking-[0.3em]">
+            // Script Vault
+          </h2>
+          <div className="h-[1px] w-12 bg-zinc-800"></div>
+        </div>
+        
+        <ScriptShowcase />
       </div>
     </main>
   );
 }
-

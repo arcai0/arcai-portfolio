@@ -9,11 +9,11 @@ type TerminalEntry = {
 };
 
 const COMMAND_OUTPUTS: Record<string, string> = {
-  whoami: "arcai - Full Stack Developer & Ranked Grinder.",
+  whoami: "arcai - Full Stack Developer focusing on scalable web systems.",
   skills:
-    "Node.js, Next.js, React, Tailwind CSS, Git, and AI API Integrations.",
+    "TypeScript, Node.js, Next.js, Git, and AI-driven automation.",
   games:
-    "League of Legends, Valorant. I also build AI strategy tools for them.",
+    "Competitive gaming and tactical analysis. I enjoy building tools that solve complex gameplay problems.",
   contact: "GitHub: github.com/arcai",
 };
 
